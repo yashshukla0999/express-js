@@ -1,12 +1,17 @@
-const express = require('express');
-const app = express();
-app.use((req,res,next)=>{
-    console.log('middelware 1')
-    next();
-})
-app.use((req,res,next)=>{
-    console.log('middelware 2')
-    res.send("<h1>milddelware 2</h1>")
-    
-})
-app.listen(3000);
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app =express();
+app.use(bodyParser.urlencoded({extended:false}));
+app.use('/add-product',(req,res,next)=>{
+    res.send('<html><body><form action="/product" method="POST"><input type="text" name="title"><button type ="submit">add me</button></form><body><html>')
+});
+app.use('/product',(req,res,next)=>{
+    console.log(req.body);
+    res.redirect('/')
+
+});
+app.use('/',(req,res,next)=>{
+    res.send('<h1>Hello from express js</h1>')
+});
+app.listen(4500);
