@@ -1,4 +1,5 @@
 const express= require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const app = express();
 const adminRouter=require('./routes/admin')
@@ -7,11 +8,26 @@ const shopRouter = require('./routes/shop')
 
 
 
+
 app.use(bodyParser.urlencoded({extended:true}));
 app.use('/admin',adminRouter);
 app.use(shopRouter);
+
+
+app.get('/contact-us',(req,resp,next)=>{
+    resp.sendFile(path.join(__dirname,"views","booking.html"))
+
+resp.redirect('/success');
+  
+})
+
+  
+app.use('/success',(req,resp)=>{
+    console.log(req.body)
+    resp.send("form submit successfully")
+})
 app.use('/',(req,resp)=>{
-    resp.send("<h1>Page Not Found</h1>")
+    resp.sendFile(path.join(__dirname,"views","error.html"));
  })
 
 app.listen(3000);
