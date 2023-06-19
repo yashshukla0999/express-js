@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const adminRouter=require('./routes/admin')
 const shopRouter = require('./routes/shop')
-
+const contactRouter = require('./routes/contact')
 
 
 
@@ -14,16 +14,11 @@ app.use('/admin',adminRouter);
 app.use(shopRouter);
 
 
-app.get('/contact-us',(req,resp,next)=>{
-    resp.sendFile(path.join(__dirname,"views","booking.html"))
-
-resp.redirect('/success');
-  
-})
+app.use(contactRouter)
 
   
 app.use('/success',(req,resp)=>{
-    console.log(req.body)
+    
     resp.send("form submit successfully")
 })
 app.use('/',(req,resp)=>{
