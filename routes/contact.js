@@ -1,7 +1,9 @@
 const express=require('express');
-const path = require('path');
+const path =require('path')
 const router = express.Router();
-const contact = require('../controller/product')
+const rooDir = require('../util/path')
+const controllerContact = require('../controller/product')
 
-router.use('/contact-us' ,contact.contactDATA,)
-module.exports=router;
+
+router.use('/contact-us' ,controllerContact.contactDetails)
+module.exports = router;

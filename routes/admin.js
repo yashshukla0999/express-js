@@ -1,9 +1,11 @@
 const express = require("express");
-const router =express.Router();
 const path = require('path');
-const productData= require('../controller/product')
+const router =express.Router();
+const rooDir = require('../util/path')
 
-router.get('/add-product',productData.adminGETData)
+router.get('/add-product',(req,resp,next)=>{
+    resp.sendFile(path.join(rooDir,"views","add-product.html"))
+   })
 router.post('/add-product',(req,resp)=>{
     console.log(req.body);
     resp.redirect('/');

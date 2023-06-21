@@ -5,22 +5,20 @@ const app = express();
 const adminRouter=require('./routes/admin')
 const shopRouter = require('./routes/shop')
 const contactRouter = require('./routes/contact')
+const form = require('./routes/form')
 
 
 
 
 app.use(bodyParser.urlencoded({extended:true}));
-app.use('/admin',adminRouter);
+app.use(adminRouter);
 app.use(shopRouter);
 
 
 app.use(contactRouter)
 
   
-app.use('/success',(req,resp)=>{
-    
-    resp.send("form submit successfully")
-})
+app.use(form);
 app.use('/',(req,resp)=>{
     resp.sendFile(path.join(__dirname,"views","error.html"));
  })
