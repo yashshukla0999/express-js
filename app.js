@@ -6,6 +6,7 @@ const adminRouter=require('./routes/admin')
 const shopRouter = require('./routes/shop')
 const contactRouter = require('./routes/contact')
 const form = require('./routes/form')
+const db = require('./util/database');
 
 
 
@@ -13,6 +14,7 @@ const form = require('./routes/form')
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(adminRouter);
 app.use(shopRouter);
+//db.execute('SELECT * FROM Products ')
 
 
 app.use(contactRouter)
